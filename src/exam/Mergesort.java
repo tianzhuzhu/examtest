@@ -1,3 +1,5 @@
+package exam;
+
 import java.util.Arrays;
 
 public class Mergesort {
@@ -20,6 +22,14 @@ public class Mergesort {
             t[k+left]=temp[k];
         }
     }
+    static void MergeSortRecursion(int t[],int left,int right){
+        if(right-left<2)
+            return ;
+        int  mid=(left+right)/2;
+        MergeSortRecursion(t,left,mid);
+        MergeSortRecursion(t,mid,right);
+        merge(t,left,mid,right);
+    }
     public static void main(String[] args) {
         int[] a={11,2,9,4,5,7,7,4,12};
         int left=0,mid,right;
@@ -33,7 +43,8 @@ public class Mergesort {
                 }
         }
         System.out.printf(Arrays.toString(a));
-        int[] b={11,2,9,4,5,7,7,4,12};
-
+        int[] b={11,2,9,4,5,7,7,4,12,4,8};
+        MergeSortRecursion(b,0,b.length);
+        System.out.printf(Arrays.toString(b));
     }
 }

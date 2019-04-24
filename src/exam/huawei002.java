@@ -1,3 +1,5 @@
+package exam;
+
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;

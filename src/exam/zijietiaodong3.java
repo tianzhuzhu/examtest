@@ -1,3 +1,4 @@
+package exam;
 
 import com.sun.javafx.image.BytePixelSetter;
 
