@@ -1,4 +1,4 @@
-package KMP;
+package example.KMP;
 
 public class Code_05_Manacher_ShortestEnd {
 

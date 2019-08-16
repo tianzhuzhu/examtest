@@ -1,4 +1,4 @@
-package sort;
+package example.sort;
 
 public class Code_08_NetherlandsFlag {
 

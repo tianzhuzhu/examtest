@@ -1,26 +1,26 @@
-package sort;
+package example.sort;
 
 import java.util.Arrays;
 
-public class Code_02_SelectionSort {
+public class Code_00_BubbleSort {
 
-	public static void selectionSort(int[] arr) {
+	public static void bubbleSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
-		for (int i = 0; i < arr.length - 1; i++) {
-			int minIndex = i;
-			for (int j = i + 1; j < arr.length; j++) {
-				minIndex = arr[j] < arr[minIndex] ? j : minIndex;
+		for (int e = arr.length - 1; e > 0; e--) {
+			for (int i = 0; i < e; i++) {
+				if (arr[i] > arr[i + 1]) {
+					swap(arr, i, i + 1);
+				}
 			}
-			swap(arr, i, minIndex);
 		}
 	}
 
 	public static void swap(int[] arr, int i, int j) {
-		int tmp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = tmp;
+		arr[i] = arr[i] ^ arr[j];
+		arr[j] = arr[i] ^ arr[j];
+		arr[i] = arr[i] ^ arr[j];
 	}
 
 	// for test
@@ -88,12 +88,10 @@ public class Code_02_SelectionSort {
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			selectionSort(arr1);
+			bubbleSort(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
-				printArray(arr1);
-				printArray(arr2);
 				break;
 			}
 		}
@@ -101,7 +99,7 @@ public class Code_02_SelectionSort {
 
 		int[] arr = generateRandomArray(maxSize, maxValue);
 		printArray(arr);
-		selectionSort(arr);
+		bubbleSort(arr);
 		printArray(arr);
 	}
 

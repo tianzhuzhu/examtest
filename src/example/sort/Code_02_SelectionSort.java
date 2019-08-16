@@ -1,28 +1,26 @@
-package sort;
+package example.sort;
 
 import java.util.Arrays;
 
-public class Code_06_BucketSort {
+public class Code_02_SelectionSort {
 
-	// only for 0~200 value
-	public static void bucketSort(int[] arr) {
+	public static void selectionSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
-		int max = Integer.MIN_VALUE;
-		for (int i = 0; i < arr.length; i++) {
-			max = Math.max(max, arr[i]);
-		}
-		int[] bucket = new int[max + 1];
-		for (int i = 0; i < arr.length; i++) {
-			bucket[arr[i]]++;
-		}
-		int i = 0;
-		for (int j = 0; j < bucket.length; j++) {
-			while (bucket[j]-- > 0) {
-				arr[i++] = j;
+		for (int i = 0; i < arr.length - 1; i++) {
+			int minIndex = i;
+			for (int j = i + 1; j < arr.length; j++) {
+				minIndex = arr[j] < arr[minIndex] ? j : minIndex;
 			}
+			swap(arr, i, minIndex);
 		}
+	}
+
+	public static void swap(int[] arr, int i, int j) {
+		int tmp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = tmp;
 	}
 
 	// for test
@@ -34,7 +32,7 @@ public class Code_06_BucketSort {
 	public static int[] generateRandomArray(int maxSize, int maxValue) {
 		int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
 		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) ((maxValue + 1) * Math.random());
+			arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
 		}
 		return arr;
 	}
@@ -85,12 +83,12 @@ public class Code_06_BucketSort {
 	public static void main(String[] args) {
 		int testTime = 500000;
 		int maxSize = 100;
-		int maxValue = 150;
+		int maxValue = 100;
 		boolean succeed = true;
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			bucketSort(arr1);
+			selectionSort(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
@@ -103,9 +101,8 @@ public class Code_06_BucketSort {
 
 		int[] arr = generateRandomArray(maxSize, maxValue);
 		printArray(arr);
-		bucketSort(arr);
+		selectionSort(arr);
 		printArray(arr);
-
 	}
 
 }

@@ -1,4 +1,4 @@
-package KMP;
+package example.KMP;
 
 public class Code_03_KMP_T1SubtreeEqualsT2 {
 
@@ -28,7 +28,7 @@ public class Code_03_KMP_T1SubtreeEqualsT2 {
 		return res;
 	}
 
-	// KMP
+	// example.KMP
 	public static int getIndexOf(String s, String m) {
 		if (s == null || m == null || m.length() < 1 || s.length() < m.length()) {
 			return -1;

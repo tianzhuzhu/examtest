@@ -1,4 +1,4 @@
-package sort;
+package example.sort;
 
 public class Code_12_SmallSum {
 

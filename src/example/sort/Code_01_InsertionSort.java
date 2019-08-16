@@ -1,59 +1,24 @@
-package sort;
+package example.sort;
 
 import java.util.Arrays;
 
-public class Code_07_RadixSort {
+public class Code_01_InsertionSort {
 
-	// only for no-negative value
-	public static void radixSort(int[] arr) {
+	public static void insertionSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
-		radixSort(arr, 0, arr.length - 1, maxbits(arr));
-	}
-
-	public static int maxbits(int[] arr) {
-		int max = Integer.MIN_VALUE;
-		for (int i = 0; i < arr.length; i++) {
-			max = Math.max(max, arr[i]);
-		}
-		int res = 0;
-		while (max != 0) {
-			res++;
-			max /= 10;
-		}
-		return res;
-	}
-
-	public static void radixSort(int[] arr, int begin, int end, int digit) {
-		final int radix = 10;
-		int i = 0, j = 0;
-		int[] count = new int[radix];
-		int[] bucket = new int[end - begin + 1];
-		for (int d = 1; d <= digit; d++) {
-			for (i = 0; i < radix; i++) {
-				count[i] = 0;
-			}
-			for (i = begin; i <= end; i++) {
-				j = getDigit(arr[i], d);
-				count[j]++;
-			}
-			for (i = 1; i < radix; i++) {
-				count[i] = count[i] + count[i - 1];
-			}
-			for (i = end; i >= begin; i--) {
-				j = getDigit(arr[i], d);
-				bucket[count[j] - 1] = arr[i];
-				count[j]--;
-			}
-			for (i = begin, j = 0; i <= end; i++, j++) {
-				arr[i] = bucket[j];
+		for (int i = 1; i < arr.length; i++) {
+			for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
+				swap(arr, j, j + 1);
 			}
 		}
 	}
 
-	public static int getDigit(int x, int d) {
-		return ((x / ((int) Math.pow(10, d - 1))) % 10);
+	public static void swap(int[] arr, int i, int j) {
+		arr[i] = arr[i] ^ arr[j];
+		arr[j] = arr[i] ^ arr[j];
+		arr[i] = arr[i] ^ arr[j];
 	}
 
 	// for test
@@ -65,7 +30,7 @@ public class Code_07_RadixSort {
 	public static int[] generateRandomArray(int maxSize, int maxValue) {
 		int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
 		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) ((maxValue + 1) * Math.random());
+			arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
 		}
 		return arr;
 	}
@@ -116,17 +81,15 @@ public class Code_07_RadixSort {
 	public static void main(String[] args) {
 		int testTime = 500000;
 		int maxSize = 100;
-		int maxValue = 100000;
+		int maxValue = 100;
 		boolean succeed = true;
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			radixSort(arr1);
+			insertionSort(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
-				printArray(arr1);
-				printArray(arr2);
 				break;
 			}
 		}
@@ -134,9 +97,8 @@ public class Code_07_RadixSort {
 
 		int[] arr = generateRandomArray(maxSize, maxValue);
 		printArray(arr);
-		radixSort(arr);
+		insertionSort(arr);
 		printArray(arr);
-
 	}
 
 }
