@@ -35,12 +35,12 @@ public class Mergesort {
         int left=0,mid,right;
         for (int i = 1; i < a.length; i*=2) {
             left=0;
-                while(left+i<a.length){
-                    mid=left+i;
-                    right=mid+i<a.length-1?mid+i:a.length-1;
-                    merge(a,left,mid,right);
-                    left=right;
-                }
+            while(left+i<a.length){
+                mid=left+i;
+                right=mid+i<a.length-1?mid+i:a.length-1;
+                merge(a,left,mid,right);
+                left=right;
+            }
         }
         System.out.printf(Arrays.toString(a));
         int[] b={11,2,9,4,5,7,7,4,12,4,8};

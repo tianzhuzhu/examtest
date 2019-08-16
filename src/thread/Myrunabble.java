@@ -1,36 +1,32 @@
 package thread;
 
+import java.util.Date;
+
 public class Myrunabble implements Runnable {
 
     static int i=0;
 
     Object lock=null;
 
-    public Myrunabble(Object lock) {
-        this.lock = lock;
-    }
+
     @Override
-    public void run() {
-        synchronized (lock) {
-            i++;
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.printf(i+" ");
+    public synchronized void run() {
+        this.walk();
+//        System.out.println(" "+System.currentTimeMillis()%10000);
     }
 
-    public static void main(String[] args) {
-        Object o = new Object();
+        void walk()  {
+          for (int j = 0; j <1000; j++) {
+              i++;
+              try {
+                  Thread.sleep(1);
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
+          }
 
-        Myrunabble myrunabble1=new Myrunabble(o);
-        Myrunabble myrunabble2=new Myrunabble(o);
-        Myrunabble myrunabble3=new Myrunabble(o);
-        myrunabble1.run();
-        myrunabble2.run();
-        myrunabble3.run();
+          System.out.println(i+"");
+
     }
 }
 /**
