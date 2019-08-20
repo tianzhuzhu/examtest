@@ -100,6 +100,12 @@ public class Code_04_QuickSort {
 
 	// for test
 	public static void main(String[] args) {
+//		int[] ints = {4, 3, 5, 1, 4};
+//
+//		partition(ints,0,4);
+//		for (int i = 0; i < ints.length; i++) {
+//			System.out.printf(ints[i]+" ");
+//		}
 		int testTime = 500000;
 		int maxSize = 100;
 		int maxValue = 100;
