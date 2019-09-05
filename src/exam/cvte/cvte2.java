@@ -1,4 +1,4 @@
-package exam;
+package exam.cvte;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class cvte2 {
         int i=0;
         newSet.add(0);
         totalSet.add(0);
-        list
+
      }
 }
 /**

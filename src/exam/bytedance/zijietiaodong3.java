@@ -1,4 +1,4 @@
-package exam;
+package exam.bytedance;
 
 import com.sun.javafx.image.BytePixelSetter;
 

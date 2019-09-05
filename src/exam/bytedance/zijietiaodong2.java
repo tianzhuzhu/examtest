@@ -1,4 +1,4 @@
-package exam;
+package exam.bytedance;
 
 import java.util.ArrayList;
 import java.util.Arrays;
